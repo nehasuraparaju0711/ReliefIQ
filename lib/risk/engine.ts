@@ -59,7 +59,7 @@ export function calculateCrisisRisk(params: RiskInputParams): RiskEvaluationResu
       // Vulnerability multiplier
       const vulnMultiplier = 0.8 + vulnerabilityIndex * 0.4;
 
-      rawScore = (rainContribution * 0.45 + dischargeContribution * 0.35 + drainagePenalty * 0.2) * vulnMultiplier;
+      rawScore = (rainContribution + dischargeContribution + drainagePenalty) * vulnMultiplier;
 
       factors.push({
         id: 'f-rain',
@@ -104,7 +104,7 @@ export function calculateCrisisRisk(params: RiskInputParams): RiskEvaluationResu
       const rainContribution = Math.min(30, (rainfallMm / 200) * 30);
       const vulnMultiplier = 0.75 + vulnerabilityIndex * 0.5;
 
-      rawScore = (windContribution * 0.6 + rainContribution * 0.4) * vulnMultiplier;
+      rawScore = (windContribution + rainContribution) * vulnMultiplier;
 
       factors.push({
         id: 'f-wind',
